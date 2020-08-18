@@ -9,12 +9,11 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
   const city = req.body.city;
   const api = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.API_KEY}`;
-  console.log("api -> ", api);
-
   try {
     await fetch(api)
       .then(res => res.json())
       .then(data => {
+        console.log(data)
         if (data.message == 'city not found') {
           res.render('index', {
             city: data.message,
