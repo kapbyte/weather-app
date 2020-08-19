@@ -3,8 +3,13 @@ const fetch = require('node-fetch');
 require('dotenv').config();
 
 router.get('/', (req, res) => {
-  res.render('index');
-})
+  res.render('index', {
+    city: null,
+    des: null,
+    icon: null,
+    temp: null
+  })
+});
 
 router.post('/', async (req, res) => {
   const city = req.body.city;
@@ -13,7 +18,6 @@ router.post('/', async (req, res) => {
     await fetch(api)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         if (data.message == 'city not found') {
           res.render('index', {
             city: data.message,
@@ -39,6 +43,6 @@ router.post('/', async (req, res) => {
       temp: null
     })
   }
-})
+});
 
 module.exports = router;
