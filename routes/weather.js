@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
       })
   } catch (error) {
     res.render('index', {
-      city: 'Oops! something went wrong...',
+      city: 'Oops! something went wrong..',
       des: null,
       icon: null,
       temp: null
